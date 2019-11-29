@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2ed4d645-2b64-4bdf-926b-fc52bcf02b44}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>py_segmentation\ch3ex2.py</StartupFile>
+    <SearchPath>py_threads\;py_segmentation\;py_calibrage_et_stereovision\;py_panoramique\</SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|3.6</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Divers\creation_charuco.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Face\face1.py" />
+    <Compile Include="Face\face2.py" />
+    <Compile Include="Face\face2landmark.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Face\face3.py" />
+    <Compile Include="Face\face4.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Face\openpose.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_calibrage_et_stereovision\stereo.py" />
+    <Compile Include="py_dnn\blob\exempleblob.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_dnn\faster_rcnn\faster_rcnn_inception_v1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_dnn\faster_rcnn\faster_rcnn_inception_v2.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_dnn\goog_lenet\alexnet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_dnn\goog_lenet\goog_lenet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_dnn\yolo\yolo.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_ml\ml.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_panoramique\panorama.py" />
+    <Compile Include="py_photo\effet-dnn.py" />
+    <Compile Include="py_photo\effet-dnn_fct.py" />
+    <Compile Include="py_photo\effet.py" />
+    <Compile Include="py_segmentation\ch3ex1.py" />
+    <Compile Include="py_segmentation\ch3ex2.py" />
+    <Compile Include="py_segmentation\ch3ex2b.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="py_segmentation\ch3ex3.py" />
+    <Compile Include="py_threads\ch2ex1.py" />
+    <Compile Include="py_threads\ch2ex2.py" />
+    <Compile Include="py_threads\ch2ex3.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Divers\" />
+    <Folder Include="Face\" />
+    <Folder Include="py_photo\" />
+    <Folder Include="py_dnn\" />
+    <Folder Include="py_dnn\goog_lenet\" />
+    <Folder Include="py_dnn\faster_rcnn\" />
+    <Folder Include="py_dnn\blob\" />
+    <Folder Include="py_dnn\yolo\" />
+    <Folder Include="py_ml\" />
+    <Folder Include="py_calibrage_et_stereovision" />
+    <Folder Include="py_panoramique" />
+    <Folder Include="py_segmentation" />
+    <Folder Include="py_threads" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.6" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
