@@ -7,7 +7,7 @@ CODE_TOUCHE_ECHAP = 27
 liste_webcam = []
 index_camera_ouvertes  = 0
 while True:
-    webcam = cv.VideoCapture(i)
+    webcam = cv.VideoCapture(index_camera_ouvertes)
     if webcam.isOpened():
         liste_webcam.append(webcam)
     else:
