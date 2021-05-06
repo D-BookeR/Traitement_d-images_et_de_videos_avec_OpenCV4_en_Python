@@ -22,7 +22,7 @@ def restaurer_configuration(nom_fichier):
             nom_noeud = "cam" + str(index_webcam)
             val_noeud = fichier.getNode(nom_noeud).mat()
             if val_noeud is not None:
-                webcams.append(val_noeud)
+                webcams.append((val_noeud[0,0],val_noeud[1,0],val_noeud[2,0]))
                 index_webcam = index_webcam  + 1
             else:
                 break
@@ -102,7 +102,7 @@ if args.nom_fichier is None:
             ]
         liste_resolution.append(np.array(s))
 else:
-    liste_resolution = restaurer_configuration(args.nomFichier)
+    liste_resolution = restaurer_configuration(args.nom_fichier)
 zoom = calcul_zoom(args.zoom)
 affichage_unique = args.d
 webcam_ouvertes = []
@@ -151,7 +151,7 @@ dico_touche_median = {ord('M'): True, ord('m'): False}
 dico_taille_noyau = {ord('+'): 1, ord('-'): -1}
 calcul_median = False
 taille_noyau = 15
-tps_ini = time.clock()
+tps_ini = time.perf_counter()
 nb_prises = 0
 while True:
     for idx, cam in enumerate(webcam_ouvertes):
@@ -180,22 +180,22 @@ while True:
     if code_touche_clavier in dico_touche_median:
         calcul_median = dico_touche_median[code_touche_clavier]
         nb_prises = 0
-        tps_ini = time.clock()
+        tps_ini = time.perf_counter()
     if code_touche_clavier in dico_taille_noyau:
         taille_noyau = taille_noyau+dico_taille_noyau[code_touche_clavier]
         if taille_noyau < 0:
             taille_noyau = 0
         nb_prises = 0
         print("taille noyau = ", taille_noyau)
-        tps_ini = time.clock()
+        tps_ini = time.perf_counter()
     nb_prises = nb_prises + len(webcam_ouvertes)
     if nb_prises > 100:
-        nb_images_par_seconde = nb_prises / (time.clock() - tps_ini)
+        nb_images_par_seconde = nb_prises / (time.perf_counter() - tps_ini)
         print("Pour chaque camera : ", nb_images_par_seconde, " Images par seconde")
         if calcul_median:
             print("     pour un Noyau = ", taille_noyau)
         nb_prises = 0
-        tps_ini = time.clock()
+        tps_ini = time.perf_counter()
 if args.nom_fichier_yxml is not None:
     sauver_configuration(args.nom_fichier_yxml, webcam_ouvertes)
 for cam in webcam_ouvertes:
