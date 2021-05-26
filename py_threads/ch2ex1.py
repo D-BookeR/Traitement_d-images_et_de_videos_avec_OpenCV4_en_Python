@@ -23,7 +23,7 @@ while True:
     for index, cam in enumerate(liste_webcam):
         ret, img = cam.read()
         if ret:
-            cv.imshow('webcam b' + str(idx), img)
+            cv.imshow('webcam b' + str(index), img)
         else:
             print(" image ne peut être lue")
     nb_prises += 1
