@@ -300,6 +300,7 @@ def init_panorama(liste_images, pano):
             pano.seuil_appariement)
     else:
         algo_apparier = cv.detail_AffineBestOf2NearestMatcher(
+            False,
             pano.try_cuda,
             pano.seuil_appariement)
     appariement_image = algo_apparier.apply2(descripteurs)
