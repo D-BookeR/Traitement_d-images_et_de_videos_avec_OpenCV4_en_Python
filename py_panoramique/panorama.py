@@ -5,8 +5,8 @@ import cv2 as cv
 
 CODE_TOUCHE_ECHAP = 27
 CODE_TOUCHE_FIN = CODE_TOUCHE_ECHAP
-MODE_AFFICHAGE = np.int(0x100)
-MODE_REGLAGECAMERA = np.int(0x1000)
+MODE_AFFICHAGE = np.int32(0x100)
+MODE_REGLAGECAMERA = np.int32(0x1000)
 NBCAMERA = 4
 CAMAPI = cv.CAP_DSHOW
 
@@ -218,9 +218,9 @@ def sauver_configuration(pano):
     for i in range(len(pano.liste_pos_coin)):
         fic_config.write("focal" + str(i), pano.focales[i])
         fic_config.write("indice" + str(i), np.array(pano.indices[i]))
-        fic_config.write("coin" + str(i), np.array(pano.liste_pos_coin[i], dtype=np.int))
+        fic_config.write("coin" + str(i), np.array(pano.liste_pos_coin[i], dtype=np.int32))
         fic_config.write("liste_taille_masque" + str(i),
-                         np.array(pano.liste_taille_masque[i], np.int))
+                         np.array(pano.liste_taille_masque[i], np.int32))
         fic_config.write("masque" + str(i), pano.liste_masque_compo[i].get())
         fic_config.write("cameraRot" + str(i), pano.cameras[i].R)
         fic_config.write("cameraFocal" + str(i), pano.cameras[i].focal)
@@ -350,7 +350,7 @@ def init_panorama(liste_images, pano):
 
     pano.composition = cv.PyRotationWarper(pano.surface_compo, pano.focale_moyenne)
     for i in range(nb_images):
-        idx = pano.indices[i][0]
+        idx = pano.indices[i]
         cam_int = pano.cameras[idx].K().astype(np.float32)
         coins, image_wp = pano.composition.warp(
             liste_images[idx],
@@ -363,8 +363,8 @@ def init_panorama(liste_images, pano):
         pano.liste_taille_masque.append((image_wp.shape[1], image_wp.shape[0]))
         images_projetees.append(image_wp)
         umat = cv.UMat(255 *
-                       np.ones((liste_images[pano.indices[i][0]].shape[0],
-                                liste_images[pano.indices[i][0]].shape[1]),
+                       np.ones((liste_images[idx].shape[0],
+                                liste_images[idx].shape[1]),
                                np.uint8)
                        )
 
